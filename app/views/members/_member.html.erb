@@ -1,0 +1,21 @@
+<div id="<%= dom_id(member) %>" class="p-12 bg-white text-slate-900 rounded-md flex flex-col items-center">
+  <h1 class="font-semibold hidden group-data-[revealed]:block">
+    <%= member.estimation %>
+  </h1>
+
+  <div class="group-data-[revealed]:hidden">
+    <% if member.estimation.present? %>
+      <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+      </svg>
+    <% else %>
+      <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.418 17.861 1 20l2.139-6.418m4.279 4.279 10.7-10.7a3.027 3.027 0 0 0-2.14-5.165c-.802 0-1.571.319-2.139.886l-10.7 10.7m4.279 4.279-4.279-4.279m2.139 2.14 7.844-7.844m-1.426-2.853 4.279 4.279"/>
+      </svg>
+    <% end %>
+  </div>
+
+  <p class="mt-2 text-sm text-gray-600">
+    <%= member.name %>
+  </p>
+</div>

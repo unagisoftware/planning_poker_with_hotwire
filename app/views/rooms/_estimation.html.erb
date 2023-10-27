@@ -1,0 +1,11 @@
+<%= turbo_frame_tag :estimation do %>
+  <div id="estimation" class="flex gap-2 mt-8 mb-3">
+    <% [0, 1, 2, 3, 5, 8].each do |estimation| %>
+      <%= button_to estimation, estimations_path(estimation: estimation),
+        class: class_names(
+          'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded',
+          'hover:bg-green-500 bg-green-500': current_member.estimation == estimation,
+        ) %>
+    <% end %>
+  </div>
+<% end %>

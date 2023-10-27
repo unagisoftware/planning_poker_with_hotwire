@@ -1,0 +1,28 @@
+<div id="planning-poker" class="flex flex-col items-center w-full group">
+  <%= turbo_stream_from @room %>
+
+  <div id="<%= dom_id(@room) %>" class="mt-10 mb-2 flex gap-4">
+    <%= render partial: 'empty_state' %>
+    <%= render @room.members %>
+  </div>
+
+  <div class="mt-5 flex flex-col items-center">
+    <% if current_member.present? %>
+      <%= button_to 'Reveal', reveal_room_path(@room), class: 'group-data-[revealed]:hidden text-sm font-semibold border-b hover:border-b-2 text-white border-sky-400' %>
+
+      <%= button_to 'Reset', reset_room_path(@room), class: 'hidden group-data-[revealed]:block py-2.5 px-5 mr-2 mb-2 text-sm font-medium focus:outline-none rounded-lg border focus:ring-4 focus:ring-gray-700 bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-7000' %>
+
+      <div class="flex flex-col items-center">
+        <%= render partial: 'estimation'%>
+
+        <%= button_to 'Log out', logout_path, method: :delete, class: "text-sm font-semibold hover:border-b-2 text-white border-sky-400" %>
+      </div>
+    <% else %>
+      <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+        <%= turbo_frame_tag :new_member do %>
+          <%= link_to 'Participate', new_member_path(room_id: @room.id), class: 'inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-900' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

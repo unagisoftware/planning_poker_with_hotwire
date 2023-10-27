@@ -61,3 +61,7 @@ group :development do
 
 end
 
+
+gem "turbo_power", "~> 0.5.0"
+
+gem "pry-byebug", "~> 3.10"

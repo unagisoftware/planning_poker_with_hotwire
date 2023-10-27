@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  resources :games, only: %i[show]
-  resources :member, only: %i[new create]
+  resources :rooms, only: %i[show] do
+    member do
+      post :reset
+      post :reveal
+    end
+  end
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  resources :members, only: %i[new create]
+  resources :estimations, only: %i[create]
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  get 'up' => 'rails/health#show', as: :rails_health_check
+  delete 'logout' => 'sessions#logout', as: :logout
 end
